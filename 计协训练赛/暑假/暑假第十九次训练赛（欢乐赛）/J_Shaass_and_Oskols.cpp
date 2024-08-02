@@ -5,28 +5,28 @@ const int INF = 0x3f3f3f3f;
 const int mod = 1e9 + 7; 
 const int N = 100010;
 
-int n,l,r;
-int a[200010];
+int n,m;
+int a[110];
 
 void solve()
 {
-    cin>>n>>l>>r;
+    cin>>n;
     for(int i=1;i<=n;i++)cin>>a[i];
-    sort(a+1,a+1+n);
-	int ans=0;
-	for(int i=2;i<=n;i++)
-	{
-		auto it1=lower_bound(a+1,a+i,l-a[i]);
-		auto it2=upper_bound(a+1,a+i,r-a[i]);
-		ans+=it2-it1;
-	}   
-	cout<<ans<<endl;
+    cin>>m;
+    while(m--)
+    {
+        int x,y; cin>>x>>y;
+        a[x-1]+=y-1;
+        a[x+1]+=a[x]-y;
+        a[x]=0;
+    }
+    for(int i=1;i<=n;i++)cout<<a[i]<<endl;
 }
 
 signed main()
 {
     ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);
-    int t; cin>>t;
+    int t=1;
     while(t--)solve();
     return 0;
 }

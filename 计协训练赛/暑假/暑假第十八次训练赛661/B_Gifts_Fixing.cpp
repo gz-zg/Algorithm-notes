@@ -5,22 +5,19 @@ const int INF = 0x3f3f3f3f;
 const int mod = 1e9 + 7; 
 const int N = 100010;
 
-int n,l,r;
-int a[200010];
+int n;
+int a[55];
+int b[55];
 
 void solve()
 {
-    cin>>n>>l>>r;
-    for(int i=1;i<=n;i++)cin>>a[i];
-    sort(a+1,a+1+n);
-	int ans=0;
-	for(int i=2;i<=n;i++)
-	{
-		auto it1=lower_bound(a+1,a+i,l-a[i]);
-		auto it2=upper_bound(a+1,a+i,r-a[i]);
-		ans+=it2-it1;
-	}   
-	cout<<ans<<endl;
+    cin>>n;
+    int min1=1e18,min2=1e18;
+    for(int i=1;i<=n;i++)cin>>a[i],min1=min(min1,a[i]);
+    for(int i=1;i<=n;i++)cin>>b[i],min2=min(min2,b[i]);
+    int ans=0;
+    for(int i=1;i<=n;i++)ans+=max(a[i]-min1,b[i]-min2);
+    cout<<ans<<endl;
 }
 
 signed main()
